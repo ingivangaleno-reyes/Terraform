@@ -4,7 +4,7 @@ import pymysql
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--host", default="localhost")
-parser.add_argument("--port", type=int, default=3307)
+parser.add_argument("--port", type=int, default=3306)
 parser.add_argument("--user", default="root")
 parser.add_argument("--password", default="")
 parser.add_argument("--database", default=None)
