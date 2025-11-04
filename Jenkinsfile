@@ -128,6 +128,8 @@ pipeline {
                 docker-compose -f docker-compose.test.yml logs test-mysql | tail -30 || true
                 echo "=== Últimos logs de Test Web ==="
                 docker-compose -f docker-compose.test.yml logs test-web | tail -30 || true
+                docker-compose -f docker-compose.test.yml build --no-cache
+                docker-compose -f docker-compose.test.yml up --abort-on-container-exit --exit-code-from test-web
             '''
         }
     }
