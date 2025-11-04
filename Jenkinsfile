@@ -82,30 +82,31 @@ pipeline {
             }
             steps {
                 timeout(time: 90, unit: 'SECONDS', activity: true) {
-                    sh """
-                        echo '=== Realizando pruebas de integración ==='
+                    sh '''
+                        echo "=== Realizando pruebas de integración ==="
                         while true; do
                             if curl -s -f http://localhost:5000/login > /dev/null; then
-                                echo '✅ Aplicación Flask respondiendo'
+                                echo "✅ Aplicación Flask respondiendo"
                                 
                                 # Probar que la base de datos funciona haciendo una consulta simple
                                 if curl -s http://localhost:5000/register | grep -q "Register"; then
-                                    echo '✅ Formulario de registro accesible'
-                                    echo '🎉 Todas las pruebas pasaron correctamente'
+                                    echo "✅ Formulario de registro accesible"
+                                    echo "🎉 Todas las pruebas pasaron correctamente"
                                     break
                                 else
-                                    echo '⏳ Esperando que todos los servicios estén listos...'
+                                    echo "⏳ Esperando que todos los servicios estén listos..."
                                     sleep 10
                                 fi
                             else
-                                echo '⏳ Esperando que la aplicación esté lista...'
+                                echo "⏳ Esperando que la aplicación esté lista..."
                                 sleep 10
                             fi
                         done
-                    """
+                    '''
+                }
             }
         }
-    }
+    } // 🔹 Cierre correcto de 'stages'
     
     post {
         always {
@@ -130,5 +131,4 @@ pipeline {
             '''
         }
     }
-}
 }
