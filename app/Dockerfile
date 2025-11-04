@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # crear usuario no-root
 RUN useradd --create-home --shell /bin/bash appuser
-
+COPY app /app
 # usar /app como WORKDIR para coincidir con docker-compose si usas ambos enfoques
 WORKDIR /app
 
