@@ -83,7 +83,7 @@ pipeline {
             steps {
                 sh '''
                     echo "=== Realizando pruebas de integración ==="
-                    timeout 90s bash -c ' {
+                    timeout time: 90, unit: 'SECONDS', activity: true {
                         while true; do
                             if curl -s -f http://localhost:5000/login > /dev/null; then
                                 echo "✅ Aplicación Flask respondiendo"
@@ -107,6 +107,7 @@ pipeline {
             }
         }
     }
+    
     post {
         always {
             sh '''
@@ -131,4 +132,3 @@ pipeline {
         }
     }
 }
-
