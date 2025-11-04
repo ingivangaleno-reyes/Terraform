@@ -25,6 +25,7 @@ def test_register_page(client):
     """Test que verifica que la página de registro carga correctamente"""
     response = client.get('/register')
     assert response.status_code == 200
+    print(response.data.decode())
     assert b'Register' in response.data
 
 def test_home_page_redirect(client):
